@@ -490,6 +490,10 @@ var BtnClickCounter = 0;
 
 
 
+
+
+
+
 //Split word into individual letters
 
 var splitwoord = Randomwoord.split("");
@@ -518,20 +522,18 @@ function layers(){
 	for(i=0; i<=4; i++){
 		var square = document.createElement("div");
 		var letter = document.createElement("p");
-		letter.id = "letter" + i;
+		letter.id = "rij" + BtnClickCounter + "letter" + i;
 		letter.className = "letters";
-		square.id = "square" + i;
+		square.id = "rij" + BtnClickCounter + "square" + i;
 		square.className = "squares";
 		layers.appendChild(square);
 		square.appendChild(letter);
 	}
-		
-	document.getElementById("letter" + 0).innerText = splitwoord[0];
 	
-	
+	//vul array opnieuw
+	var splitwoordfull = Randomwoord.split("");
+	document.getElementById("rij" + BtnClickCounter + "letter" + 0).innerText = splitwoordfull[0];
 
-	
-	
 }
 layers();
 
@@ -542,17 +544,18 @@ layers();
 button.onclick = function(){
 	var splitinput = input.value.split("");
 	console.log(splitinput);
+	
 
 	if(splitinput.length != 5){
 		alert("Vul een woord van 5 letters in");
 	}else{
 
 		for(a=0; a<=4; a++){
-			document.getElementById("letter" + a).innerText = splitinput[a];
+			document.getElementById("rij" + BtnClickCounter + "letter" + a).innerText = splitinput[a];
 		}
 	
 		for(i=1; i<=4; i++){
-			document.getElementById("letter" + i).style.display = "inline-block";
+			document.getElementById("rij" + BtnClickCounter + "letter" + i).style.display = "inline-block";
 		}
 		checkinput();
 	}
@@ -562,30 +565,43 @@ button.onclick = function(){
 
 function checkinput(){
 	var splitinput = input.value.split("");
-	
-		for(i=0; i<=4; i++){
-			if(splitinput[i] != splitwoord[i]){
-				document.getElementById("square" + i).style.backgroundColor = "red";
-			}
-		
-			for(a=0; a<=4; a++){
-				if(splitinput[a].includes(splitwoord[a]) && !splitinput[a].includes(splitinput[a])){
-					document.getElementById("square" + a).style.backgroundColor = "yellow";
-				}
-			}
+	var splitwoordfull = Randomwoord.split("");
 
-			if(splitinput[i] == splitwoord[i]){
-				document.getElementById("square" + i).style.backgroundColor = "green";
-			}
+	for(a=0; a<=4; a++){
+		document.getElementById("rij" + BtnClickCounter + "square" + a).style.backgroundColor = "red";
+	}
 
+	for(i=0; i<=4; i++){
+		if(splitinput[i] == splitwoordfull[i]){
+			document.getElementById("rij" + BtnClickCounter + "square" + i).style.backgroundColor = "green";
+			splitwoordfull[i] = "";
 		}
+	}
 
-		
-		if(input.value == Randomwoord){
-		alert("Lingo!");
+	 for(i=0; i<=4; i++){
+		if(splitwoordfull.indexOf(splitinput[i]) > -1){
+			if(document.getElementById("rij" + BtnClickCounter + "square" + i).style.backgroundColor != "green"){
+			document.getElementById("rij" + BtnClickCounter + "square" + i).style.backgroundColor = "orange";
+			var letter = splitinput[i];
+			var positieInAndereArray = splitwoord.indexOf(letter);
+			splitwoordfull[positieInAndereArray] = "";
+			}
+		}
+	}
+
+	
+	if(input.value == Randomwoord){
+	alert("Lingo!");
+	location.reload();
+	}
+
+	if(BtnClickCounter > 3){
+		alert("Geen lingo :(");
 		location.reload();
 	}
+
+	BtnClickCounter++;
+	layers();
+	//splitwoord= ["", "", "d", ""]
 }
-
-
 
