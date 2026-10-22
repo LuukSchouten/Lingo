@@ -1,45 +1,342 @@
-body{
+
+/* ========================================
+   ANIME LINGO — NEON ARCADE THEME
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --background: #090816;
+    --panel: #15132b;
+    --panel-light: #211d40;
+    --pink: #ff4fd8;
+    --cyan: #42e8ff;
+    --purple: #9d68ff;
+    --green: #20d995;
+    --orange: #ffad42;
+    --red: #fa5277;
+    --text: #f7f4ff;
+    --muted: #aaa5c9;
+    --border: rgba(157, 104, 255, 0.3);
+}
+
+/* RESET */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
     margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    padding: 30px 16px 50px;
+
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            ellipse at 15% 15%,
+            rgba(157, 104, 255, 0.18),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 85% 75%,
+            rgba(255, 79, 216, 0.12),
+            transparent 40%
+        ),
+        var(--background);
+
+    overflow-x: hidden;
 }
 
-#main{
-    background-color: red;
-    margin: auto;
-    width: 1000px;
-    height: 1100px;
-    border: 5px solid #FFFF00;
-    padding: 10px;
+/* MAIN GAME PANEL */
+
+#main {
     position: relative;
-    margin-top: 5%;
-    border: 5px solid #FFFF00;
-    padding: 10px;
+    width: min(100%, 760px);
+    min-height: 500px;
+    margin: 20px auto;
+    padding: 36px 30px;
+
+    text-align: center;
+
+    background: rgba(21, 19, 43, 0.94);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    box-shadow:
+        0 0 50px rgba(157, 104, 255, 0.12),
+        0 20px 80px rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
 }
 
-#layers{
-    background-color: blue;
-    margin-top: 10px;
-    width: 990px;
-    height: 190px;
-    border: 5px solid #FFFF00;
-}
+/* NEON LINE AT TOP */
 
-.letters{
+#main::before {
+    content: "";
     position: absolute;
-    margin-left: 50px;
-    margin-top: 15px;
-    margin-bottom: 0;
-    font-size: 6em;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--cyan),
+        var(--pink),
+        transparent
+    );
+
+    box-shadow: 0 0 20px var(--pink);
 }
 
-.squares{
-    z-index: 1;
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    margin-left: 8px;
-    margin-top: 5px;
-    height: 170px;
-    width: 170px;
-    border: 5px solid #FFFF00;
+/* TITLE */
+
+h1 {
+    margin: 0 0 12px;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(42px, 8vw, 68px);
+    font-weight: 900;
+    letter-spacing: 8px;
+
+    color: var(--text);
+
+    background: linear-gradient(
+        90deg,
+        var(--cyan),
+        #ffffff,
+        var(--pink)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 0 18px rgba(255, 79, 216, 0.25));
+}
+
+/* INSTRUCTIONS AND FEEDBACK */
+
+#main > p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+#main > p:last-of-type {
+    min-height: 24px;
+    color: var(--cyan);
+    font-weight: 700;
+}
+
+/* INPUT */
+
+#input {
+    width: min(100%, 260px);
+    height: 54px;
+    padding: 0 18px;
+
+    color: white;
+    background: #0d0b1c;
+
+    border: 2px solid #39325f;
+    border-radius: 12px;
+    outline: none;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    letter-spacing: 5px;
+    text-align: center;
+
+    transition: 0.2s ease;
+}
+
+#input::placeholder {
+    color: #696385;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0;
+}
+
+#input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px rgba(66, 232, 255, 0.15);
+}
+
+#input:disabled {
+    opacity: 0.55;
+}
+
+/* BUTTON */
+
+button {
+    min-height: 52px;
+    margin: 12px 0 6px;
+    padding: 0 24px;
+
+    color: #100b20;
+    background: linear-gradient(
+        100deg,
+        var(--cyan),
+        #9d9bff
+    );
+
+    border: none;
+    border-radius: 12px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(66, 232, 255, 0.3);
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* GAME BOARD */
+
+#layers {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    width: min(100%, 430px);
+    margin: 30px auto 0;
+    padding: 18px;
+
+    background: rgba(9, 8, 22, 0.75);
+
+    border: 1px solid rgba(157, 104, 255, 0.22);
+    border-radius: 18px;
+
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+/* EACH GUESS */
+
+.rij {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+/* LETTER TILES */
+
+.squares {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    aspect-ratio: 1;
+
+    background: var(--panel-light);
+    border: 2px solid #39325f;
+    border-radius: 10px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
+    overflow: hidden;
+}
+
+/* LETTERS */
+
+.letters {
+    position: static;
+    margin: 0;
+
+    color: white;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(20px, 5vw, 34px);
+    font-weight: 800;
+
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* COLOR FEEDBACK */
+
+.squares[style*="green"] {
+    border-color: var(--green);
+    box-shadow: 0 0 16px rgba(32, 217, 149, 0.22);
+}
+
+.squares[style*="orange"] {
+    border-color: var(--orange);
+    box-shadow: 0 0 16px rgba(255, 173, 66, 0.2);
+}
+
+.squares[style*="red"] {
+    border-color: #fa5277;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px 10px 30px;
+    }
+
+    #main {
+        margin: 8px auto;
+        padding: 28px 14px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        letter-spacing: 5px;
+    }
+
+    #layers {
+        padding: 10px;
+        gap: 7px;
+    }
+
+    .rij {
+        gap: 5px;
+    }
+
+    .squares {
+        border-radius: 7px;
+        border-width: 1px;
+    }
+
+    #input {
+        width: 100%;
+        max-width: 240px;
+    }
+}
+
+/* REDUCE ANIMATIONS WHEN REQUESTED */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }

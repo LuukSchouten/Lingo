@@ -1,607 +1,279 @@
-var words = [
-	"appel",
-	"aldus",
-	"afwas",
-	"aftel",
-	"aarde",
-	"armen",
-	"actie",
-	"apart",
-	"adres",
-	"avond",
-	"aders",
-	"alarm",
-	"boten",
-	"balen",
-	"beter",
-	"bomen",
-	"boren",
-	"boven",
-	"boxen",
-	"brood",
-	"broek",
-	"brand",
-	"breed",
-	"benen",
-	"beeld",
-	"brief",
-	"beten",
-	"basis",
-	"blauw",
-	"beren",
-	"buren",
-	"banen",
-	"bloed",
-	"broer",
-	"blond",
-	"boter",
-	"beleg",
-	"breng",
-	"baken",
-	"beker",
-	"blind",
-	"bezig",
-	"baden",
-	"bedel",
-	"bazen",
-	"bazin",
-	"baren",
-	"beden",
-	"beken",
-	"bezem",
-	"baard",
-	"bidet",
-	"breuk",
-	"conus",
-	"cello",
-	"creme",
-	"cloud",
-	"cacao",
-	"cadet",
-	"cavia",
-	"ceder",
-	"combi",
-	"china",
-	"clown",
-	"draai",
-	"deden",
-	"dalen",
-	"derde",
-	"delen",
-	"dwaas",
-	"daden",
-	"dader",
-	"dames",
-	"diner",
-	"datum",
-	"dozen",
-	"dreun",
-	"duits",
-	"dagen",
-	"deren",
-	"dwerg",
-	"dwaal",
-	"dwing",
-	"druil",
-	"droog",
-	"draad",
-	"dweil",
-	"drank",
-	"duren",
-	"dwars",
-	"drugs",
-	"daten",
-	"daler",
-	"doorn",
-	"disco",
-	"degen",
-	"droom",
-	"dient",
-	"drone",
-	"dadel",
-	"duwen",
-	"druif",
-	"deken",
-	"deler",
-	"elven",
-	"eigen",
-	"enger",
-	"engel",
-	"elder",
-	"enkel",
-	"effen",
-	"email",
-	"egaal",
-	"fiets",
-	"friet",
-	"files",
-	"forel",
-	"films",
-	"feest",
-	"fruit",
-	"falen",
-	"flora",
-	"fauna",
-	"feeen",
-	"freak",
-	"forum",
-	"fusie",
-	"geven",
-	"gaven",
-	"groen",
-	"graai",
-	"getal",
-	"grens",
-	"grond",
-	"groef",
-	"graal",
-	"gewei",
-	"games",
-	"grote",
-	"groet",
-	"garen",
-	"gebak",
-	"graag",
-	"genre",
-	"glans",
-	"geluk",
-	"geeuw",
-	"horen",
-	"heren",
-	"halen",
-	"hagel",
-	"haren",
-	"helen",
-	"harde",
-	"hemel",
-	"hoofd",
-	"huren",
-	"hamer",
-	"haken",
-	"heden",
-	"hotel",
-	"hobby",
-	"heler",
-	"hoger",
-	"ieder",
-	"index",
-	"immer",
-	"icoon",
-	"inlog",
-	"inzet",
-	"innig",
-	"jovel",
-	"jaren",
-	"jicht",
-	"jabot",
-	"jacht",
-	"jaden",
-	"jagen",
-	"jager",
-	"japon",
-	"jarig",
-	"jawel",
-	"jeans",
-	"jemig",
-	"jeugd",
-	"joint",
-	"jonas",
-	"joule",
-	"koken",
-	"kreet",
-	"koker",
-	"kerst",
-	"kegel",
-	"koude",
-	"kader",
-	"krent",
-	"kamer",
-	"kaars",
-	"kaart",
-	"kraan",
-	"krant",
-	"keren",
-	"kruid",
-	"kerel",
-	"kubus",
-	"kraal",
-	"kleur",
-	"kroon",
-	"klein",
-	"korst",
-	"klopt",
-	"kabel",
-	"kunst",
-	"kopje",
-	"krans",
-	"klimt",
-	"kater",
-	"klink",
-	"kudde",
-	"kruis",
-	"lopen",
-	"laten",
-	"lepel",
-	"links",
-	"laden",
-	"leven",
-	"lezen",
-	"lucht",
-	"lenen",
-	"laser",
-	"lente",
-	"licht",
-	"lader",
-	"leder",
-	"lunch",
-	"lijst",
-	"leger",
-	"leden",
-	"legen",
-	"lagen",
-	"lezer",
-	"lever",
-	"lingo",
-	"loper",
-	"luier",
-	"lager",
-	"leeuw",
-	"maand",
-	"malen",
-	"maken",
-	"media",
-	"meter",
-	"motor",
-	"maten",
-	"markt",
-	"mazen",
-	"molen",
-	"meest",
-	"meren",
-	"model",
-	"meden",
-	"maden",
-	"macht",
-	"meeuw",
-	"mager",
-	"magen",
-	"maren",
-	"manen",
-	"noord",
-	"nieuw",
-	"negen",
-	"namen",
-	"neven",
-	"nodig",
-	"naden",
-	"neder",
-	"nemen",
-	"onder",
-	"optel",
-	"ovaal",
-	"ovale",
-	"onwel",
-	"optie",
-	"orden",
-	"oppas",
-	"ouder",
-	"ophef",
-	"oases",
-	"palen",
-	"plein",
-	"pegel",
-	"paars",
-	"prijs",
-	"piano",
-	"pixel",
-	"paden",
-	"pasta",
-	"pizza",
-	"poten",
-	"paard",
-	"puber",
-	"pauze",
-	"preek",
-	"polis",
-	"pater",
-	"proef",
-	"panda",
-	"penis",
-	"prins",
-	"pluto",
-	"polen",
-	"plint",
-	"quota",
-	"quant",
-	"quark",
-	"queue",
-	"quilt",
-	"quote",
-	"robot",
-	"reken",
-	"raden",
-	"regen",
-	"radio",
-	"rente",
-	"regio",
-	"rugby",
-	"reden",
-	"roken",
-	"ruzie",
-	"ruist",
-	"regel",
-	"racen",
-	"races",
-	"riool",
-	"ramen",
-	"radar",
-	"roman",
-	"rokje",
-	"razen",
-	"roede",
-	"staan",
-	"staal",
-	"speel",
-	"steeg",
-	"stoel",
-	"stook",
-	"steek",
-	"schep",
-	"spijs",
-	"stoep",
-	"shirt",
-	"samen",
-	"sites",
-	"sport",
-	"spalk",
-	"sjaal",
-	"storm",
-	"staat",
-	"steun",
-	"strak",
-	"serie",
-	"shows",
-	"schat",
-	"snoep",
-	"sfeer",
-	"smeer",
-	"speer",
-	"scene",
-	"speld",
-	"smeed",
-	"smaak",
-	"super",
-	"stand",
-	"steer",
-	"smelt",
-	"sedan",
-	"skier",
-	"sluis",
-	"sneer",
-	"steel",
-	"truck",
-	"terug",
-	"typen",
-	"talen",
-	"taboe",
-	"tegel",
-	"taart",
-	"tafel",
-	"trouw",
-	"teken",
-	"teren",
-	"taken",
-	"treur",
-	"tenen",
-	"titel",
-	"thuis",
-	"tiara",
-	"teder",
-	"toets",
-	"tabak",
-	"trein",
-	"tarwe",
-	"telen",
-	"teler",
-	"uiten",
-	"uilig",
-	"uitje",
-	"uiver",
-	"ultra",
-	"uniek",
-	"uppie",
-	"uraan",
-	"uiers",
-	"velen",
-	"vloer",
-	"video",
-	"varen",
-	"vegen",
-	"veren",
-	"vader",
-	"vaten",
-	"vuren",
-	"vrouw",
-	"vlees",
-	"vogel",
-	"vroeg",
-	"vezel",
-	"veins",
-	"vorst",
-	"veder",
-	"vanaf",
-	"vieze",
-	"veger",
-	"villa",
-	"veler",
-	"vrede",
-	"vries",
-	"woord",
-	"wagen",
-	"wonen",
-	"waren",
-	"warme",
-	"weten",
-	"water",
-	"weren",
-	"wazig",
-	"wegen",
-	"weven",
-	"wezen",
-	"weken",
-	"wraak",
-	"wilde",
-	"wreed",
-	"wrede",
-	"wenst",
-	"woest",
-	"xenon",
-	"yacht",
-	"yucca",
-	"zwaar",
-	"zware",
-	"zesde",
-	"zagen",
-	"zalig",
-	"zomer",
-	"zeden",
-	"zwart",
-	"zeven",
-	"zicht",
-	"zadel",
-	"zweet",
-	"zenuw",
-	"zweer",
-	"zweef",
-	"zaden",
-	"zaken",
-	"zeker",
-	"zever",
-	"zeeen"];
 
-
-
-// Define element & Add variables
-
-var body = document.getElementById("body");
 var main = document.getElementById("main");
-var Randomwoord = words[Math.floor(Math.random() * words.length)];
-var BtnClickCounter = 0;
 
+if (!main) {
+    throw new Error('Element #main niet gevonden.');
+}
 
+var maxPogingen = 5;
+var pogingen = 0;
+var gameOver = false;
+var Randomwoord = "";
+var rijen = [];
+var nederlandsWoordenboek = new Set();
+var spelBezig = false;
 
+// OpenTaal woordenlijst rechtstreeks laden
+var woordenboekURL =
+    "https://raw.githubusercontent.com/OpenTaal/opentaal-wordlist/master/wordlist.txt";
 
+// Interface opbouwen
+main.innerHTML = "";
 
+var titel = document.createElement("h1");
+titel.innerText = "LINGO";
+main.appendChild(titel);
 
-
-//Split word into individual letters
-
-var splitwoord = Randomwoord.split("");
-console.log(splitwoord);
-
-
-// Create input & button
+var uitleg = document.createElement("p");
+uitleg.innerText = "Raad het Nederlandse woord van 5 letters!";
+main.appendChild(uitleg);
 
 var input = document.createElement("input");
 input.id = "input";
+input.type = "text";
+input.maxLength = 5;
+input.placeholder = "Typ je woord...";
+input.autocomplete = "off";
+input.disabled = true;
 main.appendChild(input);
 
-var button = document.createElement("BUTTON");
-button.innerText = "Check woord";
+var button = document.createElement("button");
+button.innerText = "Woordenboek laden...";
+button.disabled = true;
 main.appendChild(button);
 
+var feedback = document.createElement("p");
+feedback.innerText = "Nederlands woordenboek wordt geladen...";
+main.appendChild(feedback);
 
-//Create layers, Add letters and edit styling
+var layers = document.createElement("div");
+layers.id = "layers";
+main.appendChild(layers);
 
-function layers(){
+// Maak een lege rij met vijf vakjes
+function maakRij() {
+    var rij = document.createElement("div");
+    rij.className = "rij";
 
-	var layers = document.createElement("div");
-	main.appendChild(layers);
-	layers.id = "layers";
+    var vakjes = [];
 
-	for(i=0; i<=4; i++){
-		var square = document.createElement("div");
-		var letter = document.createElement("p");
-		letter.id = "rij" + BtnClickCounter + "letter" + i;
-		letter.className = "letters";
-		square.id = "rij" + BtnClickCounter + "square" + i;
-		square.className = "squares";
-		layers.appendChild(square);
-		square.appendChild(letter);
-	}
-	
-	//vul array opnieuw
-	var splitwoordfull = Randomwoord.split("");
-	document.getElementById("rij" + BtnClickCounter + "letter" + 0).innerText = splitwoordfull[0];
+    for (var i = 0; i < 5; i++) {
+        var square = document.createElement("div");
+        square.className = "squares";
 
-}
-layers();
+        var letter = document.createElement("p");
+        letter.className = "letters";
+        letter.innerText = "";
 
+        square.appendChild(letter);
+        rij.appendChild(square);
 
+        vakjes.push({
+            square: square,
+            letter: letter
+        });
+    }
 
-// Check if input is longer than 5 words, if yes>alert, if no>check input
-
-button.onclick = function(){
-	var splitinput = input.value.split("");
-	console.log(splitinput);
-	
-
-	if(splitinput.length != 5){
-		alert("Vul een woord van 5 letters in");
-	}else{
-
-		for(a=0; a<=4; a++){
-			document.getElementById("rij" + BtnClickCounter + "letter" + a).innerText = splitinput[a];
-		}
-	
-		for(i=1; i<=4; i++){
-			document.getElementById("rij" + BtnClickCounter + "letter" + i).style.display = "inline-block";
-		}
-		checkinput();
-	}
+    layers.appendChild(rij);
+    return vakjes;
 }
 
-// Check input for errors
+// Controleer letters, inclusief dubbele letters
+function controleerWoord(gok) {
+    var doel = Randomwoord.split("");
+    var invoer = gok.split("");
+    var kleuren = Array(5).fill("red");
 
-function checkinput(){
-	var splitinput = input.value.split("");
-	var splitwoordfull = Randomwoord.split("");
+    // Eerst exacte overeenkomsten
+    for (var i = 0; i < 5; i++) {
+        if (invoer[i] === doel[i]) {
+            kleuren[i] = "green";
+            doel[i] = null;
+            invoer[i] = null;
+        }
+    }
 
-	for(a=0; a<=4; a++){
-		document.getElementById("rij" + BtnClickCounter + "square" + a).style.backgroundColor = "red";
-	}
+    // Daarna letters op een verkeerde positie
+    for (var i = 0; i < 5; i++) {
+        if (invoer[i] === null) continue;
 
-	for(i=0; i<=4; i++){
-		if(splitinput[i] == splitwoordfull[i]){
-			document.getElementById("rij" + BtnClickCounter + "square" + i).style.backgroundColor = "green";
-			splitwoordfull[i] = "";
-		}
-	}
+        var index = doel.indexOf(invoer[i]);
 
-	 for(i=0; i<=4; i++){
-		if(splitwoordfull.indexOf(splitinput[i]) > -1){
-			if(document.getElementById("rij" + BtnClickCounter + "square" + i).style.backgroundColor != "green"){
-			document.getElementById("rij" + BtnClickCounter + "square" + i).style.backgroundColor = "orange";
-			var letter = splitinput[i];
-			var positieInAndereArray = splitwoord.indexOf(letter);
-			splitwoordfull[positieInAndereArray] = "";
-			}
-		}
-	}
+        if (index !== -1) {
+            kleuren[i] = "orange";
+            doel[index] = null;
+        }
+    }
 
-	
-	if(input.value == Randomwoord){
-	alert("Lingo!");
-	location.reload();
-	}
-
-	if(BtnClickCounter > 3){
-		alert("Geen lingo :(");
-		location.reload();
-	}
-
-	BtnClickCounter++;
-	layers();
-	//splitwoord= ["", "", "d", ""]
+    return kleuren;
 }
 
+// Laat de letters één voor één verschijnen
+function toonLetters(rij, gok, kleuren) {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(function () {
+            rij[i].letter.innerText = gok[i].toUpperCase();
+            rij[i].square.style.backgroundColor = kleuren[i];
+        }, i * 250);
+    }
+}
+
+// Start een nieuw spel
+function startSpel() {
+    pogingen = 0;
+    gameOver = false;
+    spelBezig = false;
+    rijen = [];
+
+    // Kies een willekeurig vijfletterwoord uit OpenTaal
+    var woorden = Array.from(nederlandsWoordenboek);
+
+    Randomwoord = woorden[
+        Math.floor(Math.random() * woorden.length)
+    ];
+
+    layers.innerHTML = "";
+
+    for (var i = 0; i < maxPogingen; i++) {
+        rijen.push(maakRij());
+    }
+
+    input.value = "";
+    input.disabled = false;
+    button.disabled = false;
+    button.innerText = "Check woord";
+
+    feedback.innerText =
+        "Poging 1 van " + maxPogingen;
+
+    button.onclick = checkWoord;
+    input.focus();
+
+    console.log("Geheim woord:", Randomwoord);
+}
+
+// Controleer het ingevulde woord
+function checkWoord() {
+    if (gameOver || spelBezig) return;
+
+    var gok = input.value.trim().toLowerCase();
+
+    if (!/^[a-z]{5}$/.test(gok)) {
+        feedback.innerText =
+            "Vul een woord van precies 5 letters in!";
+        return;
+    }
+
+    // Controleer het externe Nederlandse woordenboek
+    if (!nederlandsWoordenboek.has(gok)) {
+        feedback.innerText =
+            "Dat woord staat niet in het Nederlandse woordenboek!";
+        return;
+    }
+
+    var rij = rijen[pogingen];
+    var kleuren = controleerWoord(gok);
+
+    spelBezig = true;
+    input.disabled = true;
+    button.disabled = true;
+
+    toonLetters(rij, gok, kleuren);
+
+    // Wacht tot de animatie afgelopen is
+    setTimeout(function () {
+        pogingen++;
+        spelBezig = false;
+
+        if (gok === Randomwoord) {
+            feedback.innerText =
+                "LINGO! Goed gedaan! Geraden in " +
+                pogingen + " poging(en)! 🎉";
+
+            eindigSpel();
+            return;
+        }
+
+        if (pogingen >= maxPogingen) {
+            feedback.innerText =
+                "Game over! Het woord was " +
+                Randomwoord.toUpperCase();
+
+            eindigSpel();
+            return;
+        }
+
+        feedback.innerText =
+            "Probeer opnieuw! Poging " +
+            (pogingen + 1) + " van " + maxPogingen;
+
+        input.disabled = false;
+        button.disabled = false;
+        input.focus();
+
+    }, 5 * 250);
+}
+
+// Einde van het spel
+function eindigSpel() {
+    gameOver = true;
+    spelBezig = false;
+
+    input.disabled = true;
+    button.disabled = false;
+    button.innerText = "Opnieuw spelen";
+
+    button.onclick = startSpel;
+}
+
+// Enter om het woord in te dienen
+input.addEventListener("keydown", function(event) {
+    if (
+        event.key === "Enter" &&
+        !gameOver &&
+        !spelBezig
+    ) {
+        checkWoord();
+    }
+});
+
+// Laad OpenTaal en filter uitsluitend vijfletterwoorden
+fetch(woordenboekURL)
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error(
+                "Woordenboek laden mislukt: " + response.status
+            );
+        }
+
+        return response.text();
+    })
+    .then(function(tekst) {
+        tekst.split(/\r?\n/).forEach(function(woord) {
+            woord = woord.trim().toLowerCase();
+
+            // Alleen woorden met precies vijf letters a-z
+            if (/^[a-z]{5}$/.test(woord)) {
+                nederlandsWoordenboek.add(woord);
+            }
+        });
+
+        if (nederlandsWoordenboek.size === 0) {
+            throw new Error("Geen vijfletterwoorden gevonden.");
+        }
+
+        feedback.innerText =
+            nederlandsWoordenboek.size +
+            " vijfletterwoorden geladen! Veel succes!";
+
+        startSpel();
+    })
+    .catch(function(error) {
+        console.error("Fout bij laden woordenboek:", error);
+
+        feedback.innerText =
+            "Woordenboek laden mislukt. Controleer je internetverbinding.";
+
+        button.disabled = true;
+        input.disabled = true;
+    });
